@@ -45,10 +45,11 @@ class HouseSpider:
 
     # 将拿到的解析html 解析出需要的数据 以列表形式返回
     def parseData(self, parseHtml):
-        # 将一页的 每一条售房信息取出 存入列表中
+        # 将该页的每一条售房信息取出 存入列表中
         list_item = parseHtml.xpath("//body/div[@id='container']/div[@id='content']/div[@class='sale-left']"
-                                    "/ul[@id='houselist-mod-new']/li[@class='list-item']")
-        print(list_item[0])
+                                    "/ul[@id='houselist-mod-new']/li[@data-from]/div[@class='house-details']")
+        for item in list_item:
+
 
     def workOn(self):
         for i in range(2):
