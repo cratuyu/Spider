@@ -45,14 +45,30 @@ class HouseSpider:
 
     # 将拿到的解析html 解析出需要的数据 以列表形式返回
     def parseData(self, parseHtml):
-        # 将该页的每一条售房信息取出 存入列表中
+        # 将一页的 每一条售房信息取出 存入列表中
         list_item = parseHtml.xpath("//body/div[@id='container']/div[@id='content']/div[@class='sale-left']"
-                                    "/ul[@id='houselist-mod-new']/li[@data-from]/div[@class='house-details']")
-        for item in list_item:
+                                    "/ul[@id='houselist-mod-new']/li[@data-from]"
+                                    "")
 
+        for item in list_item:
+            lst = []
+            # list_item 返回的是一个存储着多个DIV结点(实为lxml.etree._Element对象)
+            # 依据lxml.etree._Element的文档 得知 该类的各实例方法
+            lst.append(item.find("div[@class='house-details']/div[@class='house-title']/a").get('title'))
+            # 共返回了四个span节点
+            lst1 = item.findall("div[@class='house-details']/div[@class='details-item']/span")
+            lst.append(lst1[0].text)  # houseType
+            lst.append(lst1[1].text)  # size
+            lst.append(lst1[2].text)  # height
+            lst.append(lst1[3].text)  # buildYear
+            lst.append(item.findall("div[@class='house-details']/div[@class='details-item']")[1].find("span").get("title"))  # address
+            lst.append(item.find("div[@class='pro-price']/span[@class='price-det']/strong").text + "万")  # totalprice
+            lst.append(item.find("div[@class='pro-price']/span[@class='unit-price']").text)  # price
+            print(lst)
+            self.writePage(lst)
 
     def workOn(self):
-        for i in range(2):
+        for i in range(25):
             url = self.base_url + str(i) + self.suffix_url
             headers = random.choice(self.headers_list)
             html = self.readPage(url, headers)
