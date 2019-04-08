@@ -1,5 +1,6 @@
 /*
  Navicat Premium Data Transfer
+ 此为基础表 建议城市每个区新建一张表 以免后期数据量太大
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL

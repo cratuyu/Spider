@@ -106,7 +106,15 @@ class HouseSpider:
         self.db.close()
 
 if __name__ == '__main__':
-    lst = [
+    lst = [("https://nc.anjuke.com/sale/gaoxinkaifaqua/p", "anjvke_gaoxinqu"),
+           ("https://nc.anjuke.com/sale/honggutan/p", "anjvke_honggutan"),
+           ("https://nc.anjuke.com/sale/xinjianqu/p", "anjvke_xinjian"),
+           ("https://nc.anjuke.com/sale/xihub/p", "anjvke_xihu"),
+           ("https://nc.anjuke.com/sale/donghu/p", "anjvke_donghu"),
+           ("https://nc.anjuke.com/sale/qingshanhua/p", "anjvke_qingshanhu"),
+           ("https://nc.anjuke.com/sale/qingyunpuqu/p", "anjvke_qingyunpu"),
+           ("https://nc.anjuke.com/sale/wanlia/p", "anjvke_wanli"),
+           ("https://nc.anjuke.com/sale/jinxianxian/p", "anjvke_jinxian"),
            ("https://nc.anjuke.com/sale/changbei/p", "anjvke_jingkaiqu")]
     for i in lst:
         housespider = HouseSpider(*i)
