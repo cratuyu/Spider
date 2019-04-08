@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mydb
+ Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 50722
+ Source Server Version : 80012
  Source Host           : localhost:3306
  Source Schema         : test
 
  Target Server Type    : MySQL
- Target Server Version : 50722
+ Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 28/03/2019 10:46:14
+ Date: 30/03/2019 12:15:46
 */
 
 SET NAMES utf8mb4;
@@ -28,12 +28,16 @@ CREATE TABLE `anjvke`  (
   `size` int(10) DEFAULT NULL COMMENT '大小 单位：m²',
   `height` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '楼高',
   `buildYear` year DEFAULT NULL COMMENT '建筑年代',
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '地址',
-  `totalprice` decimal(10, 2) DEFAULT NULL COMMENT '总价 单位：万',
+  `totalPrice` decimal(10, 2) DEFAULT NULL COMMENT '总价 单位：万',
   `price` int(10) DEFAULT NULL COMMENT '单价 单位：元/m²',
-  `standby1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `standby2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `createTime` date DEFAULT NULL COMMENT '存储时间',
+  `heightNumber` tinyint(2) DEFAULT NULL COMMENT '楼层高度',
+  `village` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '小区',
+  `streetName` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '街道名',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `size`(`size`) USING BTREE,
+  INDEX `price`(`price`) USING BTREE,
+  INDEX `village`(`village`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
